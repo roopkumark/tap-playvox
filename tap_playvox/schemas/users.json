@@ -1,0 +1,125 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+		"firstName": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"lastName": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"description": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"email": {
+		  "type": "string"
+		},
+		"id": {
+		  "type": "number"
+		},
+		"timezone": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"teamId": {
+			"type": [
+				"null", 
+				"number"
+			  ]
+		},
+		"organisationId": {
+			"type": [
+				"null", 
+				"number"
+			  ]
+		},
+		"isActive": {
+		  "type": "boolean"
+		},
+		"primaryContact": {
+			"type": [
+				"null", 
+				"number"
+			  ]
+		},
+		"name": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"teamName": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		},
+		"roles": {
+		  "type": "array",
+		  "items": {}
+		},
+		"systemRoles": {
+		  "type": "array",
+		  "items": {}
+		},
+		"payRates": {
+		  "type": "array",
+		  "items": {}
+		},
+		"tags": {
+		  "type": "array",
+		  "items": {}
+		},
+		"startAt": {
+			"type": [
+				"null", 
+				"string"
+			  ],
+			  "format": "date-time"
+		},
+		"updatedAt": {
+			"type": [
+				"null", 
+				"string"
+			  ],
+			  "format": "date-time"
+		},
+		"availgeneral": {
+		  "type": "array",
+		  "items": {
+			"type": "object",
+			"properties": {
+			  "day": {},
+			  "start_time": {},
+			  "end_time": {},
+			  "duration": {}
+			},
+			"required": [
+			  "day",
+			  "start_time",
+			  "end_time",
+			  "duration"
+			]
+		  }
+		},
+		"integrations": {
+		  "type": "array",
+		  "items": {}
+		},
+		"permissions": {
+		  "type": "array",
+		  "items": {}
+		}
+	  }
+  }
