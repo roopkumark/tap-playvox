@@ -1,125 +1,129 @@
 {
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {
-		"firstName": {
-			"type": [
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+	  "_id": {
+		"type": [
 				"null", 
 				"string"
 			  ]
-		},
-		"lastName": {
-			"type": [
+	  },
+	  "firstName": {
+		"type": [
 				"null", 
 				"string"
 			  ]
-		},
-		"description": {
-			"type": [
+	  },
+	  "lastName": {
+		"type": [
 				"null", 
 				"string"
 			  ]
-		},
-		"email": {
-		  "type": "string"
-		},
-		"id": {
-		  "type": "number"
-		},
-		"timezone": {
-			"type": [
+	  },
+	  "email": {
+		"type": [
 				"null", 
 				"string"
 			  ]
-		},
-		"teamId": {
-			"type": [
+	  },
+	  "id": {
+		"type": "number"
+	  },
+	  "timezone": {
+		"type": [
+				"null", 
+				"string"
+			  ]
+	  },
+	  "organisationId": {
+		"type": [
 				"null", 
 				"number"
 			  ]
-		},
-		"organisationId": {
-			"type": [
-				"null", 
-				"number"
-			  ]
-		},
-		"isActive": {
-		  "type": "boolean"
-		},
-		"primaryContact": {
-			"type": [
-				"null", 
-				"number"
-			  ]
-		},
-		"name": {
-			"type": [
-				"null", 
-				"string"
-			  ]
-		},
-		"teamName": {
-			"type": [
-				"null", 
-				"string"
-			  ]
-		},
-		"roles": {
-		  "type": "array",
-		  "items": {}
-		},
-		"systemRoles": {
-		  "type": "array",
-		  "items": {}
-		},
-		"payRates": {
-		  "type": "array",
-		  "items": {}
-		},
-		"tags": {
-		  "type": "array",
-		  "items": {}
-		},
-		"startAt": {
-			"type": [
+	  },
+	  "roles": {
+		"type": "array",
+		"items": {}
+	  },
+	  "startAt": {
+		"type": [
 				"null", 
 				"string"
 			  ],
-			  "format": "date-time"
-		},
-		"updatedAt": {
-			"type": [
+			  "format": "datetime"
+	  },
+	  "updatedAt": {
+		"type": [
 				"null", 
 				"string"
 			  ],
-			  "format": "date-time"
-		},
-		"availgeneral": {
-		  "type": "array",
-		  "items": {
-			"type": "object",
-			"properties": {
-			  "day": {},
-			  "start_time": {},
-			  "end_time": {},
-			  "duration": {}
-			},
-			"required": [
-			  "day",
-			  "start_time",
-			  "end_time",
-			  "duration"
-			]
+			  "format": "datetime"
+	  },
+	  "integrations": {
+		"type": "array",
+		"items": {}
+	  },
+	  "team": {
+		"type": "object",
+		"properties": {
+		  "id": {
+			"type": [
+				"null", 
+				"number"
+			  ]
+		  },
+		  "name": {
+			"type": [
+				"null", 
+				"string"
+			  ]
 		  }
-		},
-		"integrations": {
-		  "type": "array",
-		  "items": {}
-		},
-		"permissions": {
-		  "type": "array",
-		  "items": {}
 		}
+	  },
+	  "__v": {
+		"type": [
+				"null", 
+				"number"
+			  ]
+	  },
+	  "systemRole": {
+		"type": "object",
+		"properties": {
+		  "id": {
+			"type": [
+				"null", 
+				"number"
+			  ]
+		  },
+		  "name": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		  },
+		  "category": {
+			"type": [
+				"null", 
+				"string"
+			  ]
+		  }
+		}
+	  },
+	  "isActive": {
+		"type": "boolean"
+	  },
+	  "permissions": {},
+	  "teamName": {
+		"type": [
+				"null", 
+				"string"
+			  ]
+	  },
+	  "teamId": {
+		"type": [
+				"null", 
+				"number"
+			  ]
 	  }
+	}
   }

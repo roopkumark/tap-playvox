@@ -1,0 +1,109 @@
+{
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "datetime"
+      },
+      "updatedAt": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "startTime": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "endTime": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "taskId": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "taskIdentifier": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "taskTypeIdentifier": {},
+      "colour": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "name": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "integrationAlias": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "userEmail": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      },
+      "userId": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "isProductive": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "isLeave": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "isBreak": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "isPaid": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "shiftDataId": {
+        "type": [
+				"null", 
+				"number"
+			  ]
+      },
+      "shiftId": {
+        "type": [
+				"null", 
+				"string"
+			  ]
+      }
+    }
+  }

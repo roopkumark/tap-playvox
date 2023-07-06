@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import re
 import json
 import backoff
 import requests
@@ -21,7 +22,7 @@ def log_backoff_attempt(details):
                 details.get("tries"))
 
 class PlayvoxClient(object):
-    URL_TEMPLATE = 'https://{}.cloud.agyletime.io/api/'
+    URL_TEMPLATE = 'https://{}.cloud.agyletime.io/'
 
     def __init__(self, config, config_path):
         self.config = config
@@ -95,14 +96,18 @@ class PlayvoxClient(object):
                 url=None,
                 **kwargs):
     
-        if url is None:
-            self.check_and_renew_access_token()   
+        self.check_and_renew_access_token()   
             
         if url is None and path:
             url = '{}{}'.format(self.__client_url, path)
 
         if 'endpoint' in kwargs:
             endpoint = kwargs['endpoint']
+            
+            if(kwargs['endpoint'] == 'users'):
+                #Update URL based on https://support.agyletime.com/hc/en-us/articles/360011488813-Organisation-Users-API
+                url = re.sub(r"//.*?\.cloud", "//api-us.cloud", url)      
+                  
             del kwargs['endpoint']
         else:
             endpoint = None
@@ -111,7 +116,7 @@ class PlayvoxClient(object):
             kwargs['headers'] = {}
 
         kwargs['headers']['Authorization'] = 'Bearer {}'.format(self.__access_token)
-
+        
         with metrics.http_request_timer(endpoint) as timer:
             try:
                 if 'params' in kwargs:

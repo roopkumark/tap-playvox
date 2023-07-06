@@ -23,7 +23,7 @@ REQUIRED_CONFIG_KEYS = [
 def do_discover(client):
     LOGGER.info('Testing authentication')
     try:
-        client.get(ENDPOINTS_CONFIG.get('users').get('path'))
+        client.get(ENDPOINTS_CONFIG.get('users').get('path'), endpoint='users')
     except:
         raise Exception('Error could not authenticate with Playvox')
 

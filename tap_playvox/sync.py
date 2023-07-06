@@ -32,8 +32,6 @@ def sync_endpoint(client,
         schema = stream.schema.to_dict()
         mdata = metadata.to_map(stream.metadata)
         write_schema(stream)
-
-    path = endpoint['path'].format(**key_bag)
     
     # API Parameters
     # Reference https://support.agyletime.com/hc/en-us/articles/4402740869401-Integration-Guide-Agent-Metrics
@@ -42,28 +40,35 @@ def sync_endpoint(client,
   
     params={}
     
-    if stream_name == 'metrics':
-        #ISO 8601 Datetime format
-        iso_format = "%Y-%m-%dT%H:%M:%S.%fZ"
-        start_date = singer.get_bookmark(state,
+    #ISO 8601 Datetime format
+    iso_format = "%Y-%m-%dT%H:%M:%S.%fZ"
+    start_date = singer.get_bookmark(state,
                                      stream_name,
                                      client.start_date)
 
-        if start_date:
-            start_datetime = singer.utils.strptime_to_utc(start_date)
-        else:
-            # If no start_date or bookmark available, default to start_date of the config
-            start_datetime = singer.utils.strptime_to_utc(client.start_date)
+    if start_date:
+        start_datetime = singer.utils.strptime_to_utc(start_date)
+    else:
+        # If no start_date or bookmark available, default to start_date of the config
+        start_datetime = singer.utils.strptime_to_utc(client.start_date)
         
         dt_string = str(start_datetime)
         dt_object = datetime.fromisoformat(dt_string)
         start_datetime = dt_object.strftime(iso_format)
-        
+    
+    if stream_name == 'tasks':
+        params = {
+            'taskStartTimeFrom': str(start_datetime),
+            'taskStartTimeTo': str(datetime.utcnow().isoformat())
+        }
+ 
+    if stream_name == 'metrics':
         params = {
             'startTime': str(start_datetime),
             'userGrouping': 'true',
             'dateGrouping': 'true'
         }
+    path = endpoint['path'].format(**key_bag)
     
     #next_page_token param value for Playvox
     while initial_load or len(next_page_token) > 0:
@@ -74,7 +79,7 @@ def sync_endpoint(client,
             # We may have just been syncing a child stream.
             # Update the currently syncing stream if needed.
             update_current_stream(state, stream_name)
-            
+
         data = client.get(path,
                               params=params,
                               endpoint=stream_name,
@@ -106,6 +111,7 @@ def sync_endpoint(client,
                     while parse is True:
                         #parse through all date records for Workstream Agent Metrics 
                         if(len(date_records)>=1):
+                            record_date = data[endpoint['data_key']][endpoint['metric_key']][parsed_data_records]['date'] 
                             records = data[endpoint['data_key']][endpoint['metric_key']][parsed_data_records][endpoint['user_key']]
                             parsed_data_records += 1
                             
@@ -117,6 +123,10 @@ def sync_endpoint(client,
                                                                     schema,
                                                                     mdata)  
                                     
+                                    #Map 'date' for Workstream Agent Metrics
+                                    if (len(date_records)>=1):
+                                        record_typed["date"] = record_date
+                                        
                                 except Exception as e:
                                     LOGGER.info("PLAYVOX Sync Exception: %s....Record: %s", e, record)
                                 

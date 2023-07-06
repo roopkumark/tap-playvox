@@ -11,7 +11,7 @@ ENDPOINTS_CONFIG = {
     },
      'metrics': {
         'persist': True,
-        'path': 'workactivity/workstreams/metrics/agents',
+        'path': 'api/workactivity/workstreams/metrics/agents',
         'data_key': 'data',
         'metric_key': 'dates',
         'user_key':  'users',
@@ -20,6 +20,17 @@ ENDPOINTS_CONFIG = {
         'provides': {
             'id': 'id',
             'date': 'date'
+        }   
+    },
+     'tasks': {
+        'persist': True,
+        'path': 'api/workactivity/tasks',
+        'data_key': 'data',
+        'pk': ['id', 'createdAt'],
+        'paginate': False,
+        'provides': {
+            'id': 'id',
+            'createdAt': 'createdAt'
         }   
     }
     
