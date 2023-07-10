@@ -62,7 +62,7 @@ def sync_endpoint(client,
             'taskStartTimeTo': str(datetime.utcnow().isoformat())
         }
  
-    if stream_name == 'metrics':
+    if stream_name == 'agent_metrics':
         params = {
             'startTime': str(start_datetime),
             'userGrouping': 'true',
@@ -96,24 +96,37 @@ def sync_endpoint(client,
         #if no records are received
         if not records:
             return
-        
+    
         #parse records
         parse=True
-        
+    
         date_records = []
-        parsed_data_records = 0
+        user_channel_records = []
+        parsed_date_records = 0
+        parsed_user_records = 0
         # For Worstream Agent Metrics, only parse the data if Users data is presents
-        if stream_name == 'metrics' and endpoint['metric_key'] in data[endpoint['data_key']]:
-            date_records = data[endpoint['data_key']][endpoint['metric_key']]
+        if stream_name == 'agent_metrics' and endpoint['metric_key'] in data[endpoint['data_key']]:
+            date_records = data[endpoint['data_key']][endpoint['metric_key']]   
                                                                       
         with metrics.record_counter(stream_name) as counter:
                 with Transformer() as transformer:
                     while parse is True:
-                        #parse through all date records for Workstream Agent Metrics 
+                        
+                        #parse through all date and user and channel records for Workstream Agent Metrics 
                         if(len(date_records)>=1):
-                            record_date = data[endpoint['data_key']][endpoint['metric_key']][parsed_data_records]['date'] 
-                            records = data[endpoint['data_key']][endpoint['metric_key']][parsed_data_records][endpoint['user_key']]
-                            parsed_data_records += 1
+                            record_date = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records]['date'] 
+                            user_channel_records = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']]                            
+                            
+                            if(len(user_channel_records)>=1): 
+                                user_id = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['id']
+                                record_user_firstName = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['firstName']
+                                record_user_lastName = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['lastName']
+                                records = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records][endpoint['channel_key']]
+                                parsed_user_records += 1
+                            
+                            if len(user_channel_records)==parsed_user_records:
+                                parsed_user_records = 0     
+                                parsed_date_records += 1
                             
                         for record in records:
                             if persist and stream_name in selected_streams:
@@ -125,8 +138,11 @@ def sync_endpoint(client,
                                     
                                     #Map 'date' for Workstream Agent Metrics
                                     if (len(date_records)>=1):
+                                        record_typed["id"] = user_id
                                         record_typed["date"] = record_date
-                                        
+                                        record_typed["firstName"] = record_user_firstName
+                                        record_typed["lastName"] = record_user_lastName
+                                                                           
                                 except Exception as e:
                                     LOGGER.info("PLAYVOX Sync Exception: %s....Record: %s", e, record)
                                 
@@ -134,7 +150,7 @@ def sync_endpoint(client,
                                 
                                 counter.increment()
                         
-                        if len(date_records)==parsed_data_records:
+                        if len(date_records)==parsed_date_records:
                             parse = False
                             
         # 1. set bookmark
