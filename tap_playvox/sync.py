@@ -97,9 +97,6 @@ def sync_endpoint(client,
         if not records:
             return
     
-        if stream_name == 'agent_metrics':
-            return
-        
         #parse records
         parse=True
     
