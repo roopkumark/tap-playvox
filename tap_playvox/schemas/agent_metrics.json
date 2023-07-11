@@ -1,0 +1,563 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "id": {
+      "type": "number"
+    },
+    "firstName": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "lastName": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "totalNumberOfTouches": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInteractions": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalPhoneHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalChatHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalFirstAnswerHandleTimeOccupancy": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalFirstSolvedHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalFirstSolvedCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalTouchTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalTouchTimePostFirstAnswer": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalPositiveCsatResponses": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalCsatResponses": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalWorkstreamsHandled": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundWorkstreamsHandled": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundWorkstreamsHandled": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalResolved": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalFirstReplyCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalPhoneFirstReplyCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundPhoneFirstReplyCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundPhoneFirstReplyCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalChatFirstReplyCompleted": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalOutboundPhoneInteractions": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalInboundPhoneInteractions": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalQualityResponses": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalQualityScores": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalReopens": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalReplies": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalReassigns": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalFirstInteraction": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalPrivateComments": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalPublicComments": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalMissedChats": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalChatInteractions": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalAcceptedChats": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalAssignedChats": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalSelfAssignedChats": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalChatInteractionHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "missedCalls": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "declinedCalls": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "handledCalls": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "skippedTickets": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "skippedTicketsPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "totalResolutions": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "totalWorkstreams": {},
+    "averageQualityScore": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "positiveCsatPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTouchTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTouches": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averagePhoneHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageChatHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageOutboundWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageOutboundWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageOutboundTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageOutboundHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageInboundWrapTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageInboundWaitTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageInboundTalkTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageInboundHoldTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTotalOutboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTotalInboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageOutboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageInboundHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageTotalHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "averageFirstSolvedHandleTime": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "reopenRate": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "firstInteractionResolution": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "missedChatsPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "missedCallsPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "declinedCallsPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "handledCallsPercentage": {
+      "type": [
+        "null",
+        "number"
+      ]
+    }
+  }
+}

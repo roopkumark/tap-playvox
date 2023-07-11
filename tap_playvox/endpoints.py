@@ -9,12 +9,13 @@ ENDPOINTS_CONFIG = {
             'id': 'id'
         }
     },
-     'metrics': {
+    'agent_metrics': {
         'persist': True,
         'path': 'api/workactivity/workstreams/metrics/agents',
         'data_key': 'data',
         'metric_key': 'dates',
         'user_key':  'users',
+        'channel_key': 'channels', 
         'pk': ['id', 'date'],
         'paginate': False,
         'provides': {
