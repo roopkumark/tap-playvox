@@ -97,6 +97,9 @@ def sync_endpoint(client,
         if not records:
             return
     
+        if stream_name == 'agent_metrics':
+            return
+        
         #parse records
         parse=True
     
@@ -142,6 +145,15 @@ def sync_endpoint(client,
                                         record_typed["date"] = record_date
                                         record_typed["firstName"] = record_user_firstName
                                         record_typed["lastName"] = record_user_lastName
+                                    
+                                    # To ensure Email is all in lower_case for 'users' and 'tasks'
+                                    if stream_name == 'users':
+                                        record_typed['email'] = record_typed['email'].lower()
+                                        print('Email:', record_typed['email'])
+                                    
+                                    if stream_name == 'tasks':
+                                        record_typed['userEmail'] = record_typed['userEmail'].lower()
+                                        print('UserEmail:', record_typed['userEmail'])
                                                                            
                                 except Exception as e:
                                     LOGGER.info("PLAYVOX Sync Exception: %s....Record: %s", e, record)
