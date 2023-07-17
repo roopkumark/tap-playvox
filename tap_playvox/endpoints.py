@@ -23,6 +23,20 @@ ENDPOINTS_CONFIG = {
             'date': 'date'
         }   
     },
+    'schedule_metrics': {
+        'persist': True,
+        'path': 'api/schedule/metrics',
+        'data_key': 'data',
+        'metric_key': 'dates',
+        'user_key':  'users',
+        'channel_key': 'channels', 
+        'pk': ['id', 'date'],
+        'paginate': False,
+        'provides': {
+            'id': 'id',
+            'date': 'date'
+        }   
+    },
      'tasks': {
         'persist': True,
         'path': 'api/workactivity/tasks',

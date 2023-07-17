@@ -62,7 +62,7 @@ def sync_endpoint(client,
             'taskStartTimeTo': str(datetime.utcnow().isoformat())
         }
  
-    if stream_name == 'agent_metrics':
+    if stream_name == 'agent_metrics' or stream_name == 'schedule_metrics':
         params = {
             'startTime': str(start_datetime),
             'userGrouping': 'true',
@@ -104,9 +104,14 @@ def sync_endpoint(client,
         user_channel_records = []
         parsed_date_records = 0
         parsed_user_records = 0
-        # For Worstream Agent Metrics, only parse the data if Users data is presents
-        if stream_name == 'agent_metrics' and endpoint['metric_key'] in data[endpoint['data_key']]:
-            date_records = data[endpoint['data_key']][endpoint['metric_key']]   
+        
+        # For Worstream Agent and Schedule Metrics, only parse the data if Users data is presents
+        if (stream_name == 'agent_metrics' or stream_name == 'schedule_metrics')and endpoint['metric_key'] in data[endpoint['data_key']]:
+            date_records = data[endpoint['data_key']][endpoint['metric_key']]  
+        
+        # For Worstream Agent and Schedule Metrics, if no date records are present return
+        if (stream_name == 'agent_metrics' or stream_name == 'schedule_metrics') and len(date_records) == 0:
+            return
                                                                       
         with metrics.record_counter(stream_name) as counter:
                 with Transformer() as transformer:
@@ -117,10 +122,20 @@ def sync_endpoint(client,
                             record_date = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records]['date'] 
                             user_channel_records = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']]                            
                             
-                            if(len(user_channel_records)>=1): 
+                            if(len(user_channel_records)>=1 and stream_name == 'agent_metrics'): 
                                 user_id = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['id']
                                 record_user_firstName = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['firstName']
                                 record_user_lastName = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['lastName']
+                                records = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records][endpoint['channel_key']]
+                                parsed_user_records += 1
+                            
+                            if(len(user_channel_records)>=1 and stream_name == 'schedule_metrics'): 
+                                user_id = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['id']
+                                record_user_email = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['email']
+                                record_user_rostered_startTime = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['rosteredStartTime']
+                                record_user_rostered_endTime = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['rosteredEndTime']
+                                record_user_acutal_startTime = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['actualStartTime']
+                                record_user_actual_endTime = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records]['actualEndTime']
                                 records = data[endpoint['data_key']][endpoint['metric_key']][parsed_date_records][endpoint['user_key']][parsed_user_records][endpoint['channel_key']]
                                 parsed_user_records += 1
                             
@@ -136,21 +151,29 @@ def sync_endpoint(client,
                                                                     schema,
                                                                     mdata)  
                                     
-                                    #Map 'date' for Workstream Agent Metrics
-                                    if (len(date_records)>=1):
+                                    #Map 'date', 'id', 'firstName' and 'lastName' fields for Workstream Agent Metrics
+                                    if (len(date_records)>=1 and stream_name== 'agent_metrics'):
                                         record_typed["id"] = user_id
                                         record_typed["date"] = record_date
                                         record_typed["firstName"] = record_user_firstName
                                         record_typed["lastName"] = record_user_lastName
-                                    
+                                   
+                                    #Map 'date', 'id', 'email', 'rosteredStartTime', 'rosteredEndTime', 'actualStartTime' and 'actualEndTime' fields for Workstream Agent Metrics
+                                    if (len(date_records)>=1 and stream_name== 'schedule_metrics'):
+                                        record_typed["id"] = user_id
+                                        record_typed["date"] = record_date
+                                        record_typed["email"] = record_user_email.lower()
+                                        record_typed["rosteredStartTime"] = record_user_rostered_startTime
+                                        record_typed["rosteredEndTime"] = record_user_rostered_endTime
+                                        record_typed["actualStartTime"] = record_user_acutal_startTime
+                                        record_typed["actualEndTime"] = record_user_actual_endTime
+                             
                                     # To ensure Email is all in lower_case for 'users' and 'tasks'
                                     if stream_name == 'users':
                                         record_typed['email'] = record_typed['email'].lower()
-                                        print('Email:', record_typed['email'])
                                     
                                     if stream_name == 'tasks':
                                         record_typed['userEmail'] = record_typed['userEmail'].lower()
-                                        print('UserEmail:', record_typed['userEmail'])
                                                                            
                                 except Exception as e:
                                     LOGGER.info("PLAYVOX Sync Exception: %s....Record: %s", e, record)

@@ -1,0 +1,364 @@
+{
+    "type": "object",
+    "properties": {
+      "rostered": {
+        "type": "object",
+        "properties": {
+          "totalDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "totalTaskDurationToNow": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "availableDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "availableDurationToNow": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "paidDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "plannedDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "leaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "paidLeaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "unplannedLeaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "unplannedPaidLeaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "plannedLeaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "plannedPaidLeaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "productiveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "shrinkageDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "paidShrinkageDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "totalOvertime_Double_Time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "totalOvertime_1_5_Overtime_rate": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "totalOvertime_Standard_Rate": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "utilisationPercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          }
+        }
+      },
+      "actual": {
+        "type": "object",
+        "properties": {
+          "totalDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "availableDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "afterCallWorkDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "paidDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "plannedDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "leaveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "productiveDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "outOfAdherenceDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "adherenceExceptionDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "startedEarlyCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "startedLateCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "finishedEarlyCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "finishedLateCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "shiftCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "additionalHoursShiftCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "standardHoursShiftCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "finishedEarlyOrLateCount": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "startTimeVarianceDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "endTimeVarianceDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "totalPunctualityVarianceDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "shrinkageDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "paidShrinkageDuration": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "unplannedDuration": {},
+          "startLateImpactDuration": {},
+          "finishEarlyImpactDuration": {},
+          "shrinkagePercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "conformancePercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "utilisationPercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "startEarlyPercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "startLatePercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "finishedEarlyPercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "finishedLatePercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "punctualityPercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "adherencePercentage": {
+            "type": [
+              "null",
+              "number"
+            ]
+          }
+        }
+      },
+      "channel": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "date": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "format": "date"
+      },
+      "id": {
+        "type": "number"
+      },
+      "email": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "rosteredStartTime": {
+        "type": [
+            "null", 
+            "string"
+          ]
+      },
+      "rosteredEndTime": {
+        "type": [
+            "null", 
+            "string"
+          ]
+      },
+      "actualStartTime": {
+        "type": [
+            "null", 
+            "string"
+          ]
+      },
+      "actualEndTime": {
+        "type": [
+            "null", 
+            "string"
+          ]
+      }
+    }
+  }
