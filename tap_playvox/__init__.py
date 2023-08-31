@@ -41,6 +41,7 @@ def main():
         if parsed_args.discover:
             do_discover(client)
         else:
+            state = parsed_args.state if parsed_args.state else {"bookmarks": {}}
             sync(client,
                  parsed_args.catalog,
-                 parsed_args.state)
+                 state)

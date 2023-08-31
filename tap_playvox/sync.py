@@ -44,7 +44,7 @@ def sync_endpoint(client,
     iso_format = "%Y-%m-%dT%H:%M:%S.%fZ"
     start_date = singer.get_bookmark(state,
                                      stream_name,
-                                     client.start_date)
+                                     'endDate')
 
     if start_date:
         start_datetime = singer.utils.strptime_to_utc(start_date)
@@ -158,7 +158,7 @@ def sync_endpoint(client,
                                         record_typed["firstName"] = record_user_firstName
                                         record_typed["lastName"] = record_user_lastName
                                    
-                                    #Map 'date', 'id', 'email', 'rosteredStartTime', 'rosteredEndTime', 'actualStartTime' and 'actualEndTime' fields for Workstream Agent Metrics
+                                    #Map 'date', 'id', 'email', 'rosteredStartTime', 'rosteredEndTime', 'actualStartTime' and 'actualEndTime' fields for Schedule Metrics
                                     if (len(date_records)>=1 and stream_name== 'schedule_metrics'):
                                         record_typed["id"] = user_id
                                         record_typed["date"] = record_date
@@ -184,10 +184,19 @@ def sync_endpoint(client,
                         
                         if len(date_records)==parsed_date_records:
                             parse = False
-                            
+
+        # Subtract 14 days from the current date and time for Schedule Metrics
+        startDate = datetime.utcnow() - timedelta(days=14)
+
+        # Set the time to midnight
+        startDate = startDate.replace(hour=0, minute=0, second=0, microsecond=0)
+                   
         # 1. set bookmark
-        singer.write_bookmark(state, stream_name, 'endDate', str(datetime.utcnow().isoformat()))
-                
+        if(stream_name == 'schedule_metrics'):
+            singer.write_bookmark(state, stream_name, 'endDate', str(startDate.isoformat()))
+        else:
+            singer.write_bookmark(state, stream_name, 'endDate', str(datetime.utcnow().isoformat()))
+            
         # for records that expect to be paged
         if endpoint.get('paginate', True):
             #get next_page_token
