@@ -48,9 +48,9 @@ def sync_endpoint(client,
 
     start_datetime = singer.utils.strptime_to_utc(start_date)
 
-    # Subtract 14 days from the bookmark datetime for Schedule Metrics since there can be updates
+    # Subtract 14 days from the bookmark datetime for Schedule Metrics or Tasks stream since there can be updates
     # during this period
-    if stream_name == 'schedule_metrics':
+    if stream_name == 'schedule_metrics' or stream_name == 'tasks':
         start_datetime -= timedelta(days=14)
 
     iso_start_datetime = start_datetime.strftime(iso_format)
@@ -178,6 +178,7 @@ def sync_endpoint(client,
                                     LOGGER.info("PLAYVOX Sync Exception: %s....Record: %s", e, record)
 
                                 singer.write_record(stream_name, record_typed)
+                                print('Insert Row:', stream_name, record_typed)
                                 counter.increment()
 
                         if len(date_records) == parsed_date_records:
